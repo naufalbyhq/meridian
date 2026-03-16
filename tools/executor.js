@@ -14,6 +14,7 @@ import { studyTopLPers } from "./study.js";
 import { addLesson, clearAllLessons, clearPerformance, removeLessonsByKeyword } from "../lessons.js";
 import { setPositionInstruction } from "../state.js";
 import { addSmartWallet, removeSmartWallet, listSmartWallets, checkSmartWalletsOnPool } from "../smart-wallets.js";
+import { getTokenInfo, getTokenHolders } from "./token.js";
 import { config, reloadScreeningThresholds } from "../config.js";
 import fs from "fs";
 import path from "path";
@@ -39,6 +40,8 @@ const toolMap = {
   get_my_positions: getMyPositions,
   get_wallet_positions: getWalletPositions,
   search_pools: searchPools,
+  get_token_info: getTokenInfo,
+  get_token_holders: getTokenHolders,
   add_smart_wallet: addSmartWallet,
   remove_smart_wallet: removeSmartWallet,
   list_smart_wallets: listSmartWallets,

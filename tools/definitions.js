@@ -453,6 +453,44 @@ If no smart wallets are present, rely on fundamentals (fees, volume, organic sco
   {
     type: "function",
     function: {
+      name: "get_token_info",
+      description: `Get token data from Jupiter (organic score, holders, audit, price stats, mcap).
+Use this to research a token before deploying or when the user asks about a token.
+Accepts token name, symbol, or mint address as query.
+
+Returns: organic score, holder count, mcap, liquidity, audit flags (mint/freeze disabled, bot holders %), 1h and 24h stats.`,
+      parameters: {
+        type: "object",
+        properties: {
+          query: { type: "string", description: "Token name, symbol, or mint address" }
+        },
+        required: ["query"]
+      }
+    }
+  },
+
+  {
+    type: "function",
+    function: {
+      name: "get_token_holders",
+      description: `Get holder distribution for a token by mint address.
+Use to check concentration risk — if top holders control too much supply it's a red flag.
+Returns top 20 holders with their percentage of supply.
+
+NOTE: Requires mint address. If you only have a symbol/name, call get_token_info first to resolve the mint.`,
+      parameters: {
+        type: "object",
+        properties: {
+          mint: { type: "string", description: "Token mint address (base58). Use get_token_info first if you only have a symbol." }
+        },
+        required: ["mint"]
+      }
+    }
+  },
+
+  {
+    type: "function",
+    function: {
       name: "search_pools",
       description: `Search for DLMM pools by token symbol, ticker, or contract address (CA).
 Use this when the user asks to deploy into a specific token or pool by name/CA,
