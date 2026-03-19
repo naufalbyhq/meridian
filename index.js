@@ -110,7 +110,7 @@ HARD CLOSE RULES — from user-config, not suggestions, no exceptions:
 2. minutes_out_of_range >= ${config.management.outOfRangeWaitMinutes}min → CLOSE (OOR timeout)
 3. Position instruction condition met → CLOSE immediately
 4. fee_active_tvl_ratio < ${config.screening.minFeeActiveTvlRatio}% AND volume < $${config.screening.minVolume} → CLOSE (yield dead)
-5. pnl_pct <= -${config.management.emergencyPriceDropPct ?? 50}% → CLOSE (emergency stop loss)
+5. pnl_pct <= ${config.management.emergencyPriceDropPct}% → CLOSE (emergency stop loss)
 
 STEPS:
 1. get_my_positions — check all open positions.

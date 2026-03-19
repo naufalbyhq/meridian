@@ -41,36 +41,36 @@ export const config = {
 
   // ─── Position Management ────────────────
   management: {
-    minClaimAmount:        5,
-    outOfRangeBinsToClose: 5,
+    minClaimAmount:        u.minClaimAmount        ?? 5,
+    outOfRangeBinsToClose: u.outOfRangeBinsToClose ?? 5,
     outOfRangeWaitMinutes: u.outOfRangeWaitMinutes ?? 30,
-    minVolumeToRebalance:  1000,
-    emergencyPriceDropPct: -50,
-    takeProfitFeePct:      u.takeProfitFeePct ?? 5,
-    minSolToOpen:          u.minSolToOpen ?? 0.55,
-    deployAmountSol:       u.deployAmountSol ?? 0.5,
-    gasReserve:            u.gasReserve        ?? 0.2,   // always keep this much SOL for gas
-    positionSizePct:       u.positionSizePct   ?? 0.35,  // % of deployable capital per position
+    minVolumeToRebalance:  u.minVolumeToRebalance  ?? 1000,
+    emergencyPriceDropPct: u.emergencyPriceDropPct ?? -50,
+    takeProfitFeePct:      u.takeProfitFeePct      ?? 5,
+    minSolToOpen:          u.minSolToOpen          ?? 0.55,
+    deployAmountSol:       u.deployAmountSol       ?? 0.5,
+    gasReserve:            u.gasReserve            ?? 0.2,
+    positionSizePct:       u.positionSizePct       ?? 0.35,
   },
 
   // ─── Strategy Mapping ───────────────────
   strategy: {
-    strategy:   "bid_ask",
-    binsBelow:  69,  // activeBin - 69 to activeBin = 70 bins total (program max)
+    strategy:  u.strategy  ?? "bid_ask",
+    binsBelow: u.binsBelow ?? 69,
   },
 
   // ─── Scheduling ─────────────────────────
   schedule: {
-    managementIntervalMin: u.managementIntervalMin ?? 10,
-    screeningIntervalMin:  u.screeningIntervalMin  ?? 30,
-    healthCheckIntervalMin: 60,
+    managementIntervalMin:  u.managementIntervalMin  ?? 10,
+    screeningIntervalMin:   u.screeningIntervalMin   ?? 30,
+    healthCheckIntervalMin: u.healthCheckIntervalMin ?? 60,
   },
 
   // ─── LLM Settings ──────────────────────
   llm: {
-    temperature: 0.373,
-    maxTokens: 4096,
-    maxSteps: 20,
+    temperature: u.temperature ?? 0.373,
+    maxTokens:   u.maxTokens   ?? 4096,
+    maxSteps:    u.maxSteps    ?? 20,
     managementModel: u.managementModel ?? process.env.LLM_MODEL ?? "openrouter/healer-alpha",
     screeningModel:  u.screeningModel  ?? process.env.LLM_MODEL ?? "openrouter/hunter-alpha",
     generalModel:    u.generalModel    ?? process.env.LLM_MODEL ?? "openrouter/healer-alpha",
